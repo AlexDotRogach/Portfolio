@@ -1,0 +1,82 @@
+
+.menu-navigation {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr;
+    gap: 5px;
+    transform: skewX(-10deg);
+    transition: 0.5s;
+}
+
+.menu-navigation:hover {
+    gap: 10px;
+    transform: skewX(10deg)
+}
+
+.menu-navigation div {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 2px;
+}
+
+.start {
+    min-height: 80vh;
+    background: url('img/startBack.png') no-repeat 50%/cover black;
+    position: relative;
+    font-family: none;
+
+    &__info {
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        transform: translate(-50%,-50%);
+        max-width: 55vw;
+        max-height: 30vh;
+        font-family: 'marker';
+        z-index: 2;
+        text-align: left;
+    }
+
+    &__name {
+        font-size: 24px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+    &__name:before {
+        @include circleGrey;
+    }
+
+    &__location {
+        font-size: 34px;
+    }
+
+    &__buttons {
+        margin-top: 32px;
+    }
+
+    &__buttons button {
+        border: none;
+        border-radius: 20px;
+        font-size: 18px;
+        padding: 10px;
+        text-align: center;
+        color: rgb(42, 39, 39);
+        background: rgba(218, 165, 32,0.9);
+        transition: 0.3s;
+    }
+
+    &__buttons button:hover {
+        opacity: 0.9;
+    }
+
+    &__buttons button:focus {
+        outline: none;
+    }
+}
+
+

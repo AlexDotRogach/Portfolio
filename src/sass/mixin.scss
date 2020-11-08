@@ -1,0 +1,16 @@
+@mixin circleGrey {
+    display: block;
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 30px;
+    background: rgba(211, 214, 18, 0.15);
+    border-radius: 100%;
+    left: -10px;
+    top: 2px
+}
+
+@mixin left {
+    left: 50%;
+    transform: translateX(-50%);
+}

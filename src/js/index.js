@@ -1,8 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
-    
-    console.log('doing');
-    
-    const test = require('./test');
 
-    test();
+    const animInfo = require('./animation-info');
+
+    animInfo();
 });

@@ -4,13 +4,21 @@ function animInfo() {
     const blockText = document.querySelector('.about__block-text');
     const blockElements = document.querySelectorAll('.about__block-tools .about__block-element');
     const screenPerson = document.documentElement.clientWidth;
-    let counter = 0, postion;
 
-    if (screenPerson > 500) {
-        postion = startHeight * 0.8;
-    } else {
-        postion = startHeight;
+    let counter = 0;
+
+    if (screenPerson < 640) {
+        blockElements.forEach(item => {
+            item.classList.add('activeBlock');
+            item.style.opacity = 0;
+        });
     }
+
+// переменные для мобильной версии анимаций
+    const blockElemTop = Math.round(blockElements[0].getBoundingClientRect().top);
+    const blockElemHeight = Math.round(blockElements[0].getBoundingClientRect().height);
+    
+    let scopeAction =  blockElemTop - blockElemHeight * 2;
 
      window.addEventListener('scroll', () => {
 
@@ -46,18 +54,17 @@ function animInfo() {
             const scroll = document.documentElement.scrollTop;
 
             if (scroll >= startHeight / 2) {
-
                 blockText.classList.add('active');
-
-                if (scroll >= (startHeight * 0.8)) {
-
-                    if (counter == blockElements.length) {
-                        return;
-                    } else {
-                        showElement(scroll, postion, counter);
-                    }
-                }
              } 
+
+             if (scroll >= scopeAction) {
+                 
+                if (counter < blockElements.length) {
+                    controlScroll(scroll, scopeAction, counter);
+                } else {
+                    return;
+                }
+             }
         }
     });
 
@@ -69,31 +76,25 @@ function animInfo() {
         }, time);
     }
 
-// Отображает блоки по очередно по каждому вызову
-    function* delayBlockMobile() {
+//Генератор следующего элемента в блоке tools
 
-        let time = 150;
+    const generNextEl =  showBlock();
+    
+    function* showBlock() {
 
         for (let i = 0; i < blockElements.length; i++) {
-            time += 150;
-            blockElements[i].classList.add('activeBlock');
-            delayblock(0, i, 'add');
+            blockElements[i].style.opacity = 1;
             yield i;
         }
     }
 
-    const generNextElem = delayBlockMobile();
+// С помощью counter контролирую чтобы блоки не багались
+    function controlScroll(scr, pos, count) {
 
-    function nextElem() {
-        generNextElem.next();
-    }
-
-    function showElement(scroll, pos, coun) {
-
-        if (scroll > pos && counter == coun) {
-            nextElem();
+        if (scr >= pos && count == counter) {
+            generNextEl.next();
             counter++;
-            postion += +window.getComputedStyle(document.querySelector('.about__block-element')).height.slice(0,-2);
+            scopeAction += blockElemHeight * 0.9;
         }
     }
 }

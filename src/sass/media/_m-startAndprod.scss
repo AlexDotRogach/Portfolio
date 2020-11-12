@@ -26,6 +26,10 @@
 
 @media (max-width: 640px) { 
     
+    .about__block-element {
+        transform: translateX(0);
+    }
+    
     .about__block-tools {
         display: flex;
         flex-flow: column nowrap;
@@ -77,6 +81,10 @@
 
     .start__buttons button {
         font-size: 12px;
+    }
+
+    .about__block-title {
+        margin-top: 15px;
     }
 
 }

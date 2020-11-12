@@ -1,18 +1,27 @@
 
-    window.addEventListener('load', () => {
-        
-        hideCss('body');
-        hideCss('html');
-        document.querySelector('body').style.background = 'none';
-        document.querySelector('.loader').style.display = 'none';
+window.addEventListener('load', () => {
+    
+    const body = document.querySelector('body'), html = document.querySelector('html');
 
-        const animInfo = require('./animation-info');
-        
-        animInfo();
-    });
+    body.style.cssText = `
+        background: none;
+        height: auto;
+        width: auto;
+        overflow: scroll;
+    `;
 
-    function hideCss(elem) {
-        document.querySelector(elem).style.height = 'auto';
-        document.querySelector(elem).style.width = 'auto';
-        document.querySelector(elem).style.overflow = 'scroll';
-    }
+    html.style.cssText = `
+        height: 2500px;
+        width: auto;
+        overflow: inherit;
+    `;
+
+    document.querySelector('.loader').style.display = 'none';
+
+    const animInfo = require('./animation-info');
+    const animTools = require('./anim-tools');
+    
+    animInfo();
+    animTools();
+});
+

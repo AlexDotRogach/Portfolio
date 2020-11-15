@@ -11,7 +11,7 @@ window.addEventListener('load', () => {
     `;
 
     html.style.cssText = `
-        height: 2500px;
+        height: auto;
         width: auto;
         overflow: inherit;
     `;
@@ -20,8 +20,10 @@ window.addEventListener('load', () => {
 
     const animInfo = require('./animation-info');
     const animTools = require('./anim-tools');
+    const portfolioCheck = require('./portfoliCheck');
     
     animInfo();
     animTools();
+    portfolioCheck();
 });
 

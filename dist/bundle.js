@@ -7,7 +7,6 @@
   \******************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 44:0-14 */
 /***/ ((module) => {
 
 function animTools() {
@@ -17,8 +16,8 @@ function animTools() {
 
     let counter = 0, arr = [];
 
-    skillsBlock.forEach((item, index) => {
-        let blockElemTop = skillsBlock[index].getBoundingClientRect().top;
+    skillsBlock.forEach(item => {
+        let blockElemTop = item.getBoundingClientRect().top;
 
         arr.push(blockElemTop);
     });
@@ -26,6 +25,7 @@ function animTools() {
     arr = arr.map(item => item - +blockElemHeight);
 
     window.addEventListener('scroll', () => {
+
         const scroll = document.documentElement.scrollTop;
 
         arr.forEach((item, index) => {
@@ -35,6 +35,7 @@ function animTools() {
 
     const generNextEl =  showBlock();
     
+
     function* showBlock() {
 
         for (let i = 0; i < skillsBlock.length; i++) {
@@ -43,10 +44,10 @@ function animTools() {
         }
     }
 
+    
     function controlScroll(scr, pos, count) {
 
         if (scr >= pos && count == counter) {
-
             generNextEl.next();
             counter++;
         }
@@ -63,106 +64,63 @@ module.exports = animTools;
   \**********************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 103:0-14 */
 /***/ ((module) => {
 
 function animInfo() {
     
-    const startHeight = +window.getComputedStyle(document.querySelector('.start')).height.slice(0,-2);
-    const blockText = document.querySelector('.about__block-text');
-    const blockElements = document.querySelectorAll('.about__block-tools .about__block-element');
+    const aboutMeElements = document.querySelector('.about__block-info').childNodes;
+    const text = aboutMeElements[0];
+    const tools = aboutMeElements[1];
     const screenPerson = document.documentElement.clientWidth;
 
+// расстояние для срабатывания анимации
+    const distanceText = text.getBoundingClientRect().top - text.getBoundingClientRect().height;
+    let arrDistanceTools = [];
+
+// счетчик для регулирование срабатывания по элементам
     let counter = 0;
 
-    if (screenPerson < 640) {
-        blockElements.forEach(item => {
-            item.classList.add('activeBlock');
-            item.style.opacity = 0;
-        });
-    }
+    tools.childNodes.forEach(item => {
+       arrDistanceTools.push(item.getBoundingClientRect().top - item.getBoundingClientRect().height);
+    });
 
-// переменные для мобильной версии анимаций
-    const blockElemTop = Math.round(blockElements[0].getBoundingClientRect().top);
-    const blockElemHeight = Math.round(blockElements[0].getBoundingClientRect().height);
-    
-    let scopeAction =  blockElemTop - blockElemHeight * 2;
+    document.addEventListener('scroll', () => {
 
-     window.addEventListener('scroll', () => {
+        const scroll = document.documentElement.scrollTop;
 
-        if (screenPerson > 640) {
-            const scroll = document.documentElement.scrollTop;
-            const scrollShowBlock = scroll + startHeight - 150;
-    
-            if (scrollShowBlock >= startHeight) {
-                blockText.classList.add('active');
-
-                let time = 150;
-
-                blockElements.forEach((item, index) => {
-                    time += 150;
-                    item.classList.add('activeBlock');
-                    delayblock(time, index, 'add');
-                });
-            } 
-
-            if (scroll > startHeight * 4) {
-
-                blockText.classList.remove('active');
-
-                let time = 150;
-
-                blockElements.forEach((item, index) => {
-                    time += 150;
-                    item.classList.remove('activeBlock');
-                    delayblock(time, index, 'remove');
-                });
-            }
+        if (scroll >= distanceText) {
+            text.classList.add('active');
+        }
+        
+        if (screenPerson < 640) {
+        
+            arrDistanceTools.forEach((item, index) => {
+                controlScroll(scroll, item, index);
+            });
         } else {
-            const scroll = document.documentElement.scrollTop;
-
-            if (scroll >= startHeight / 2) {
-                blockText.classList.add('active');
-             } 
-
-             if (scroll >= scopeAction) {
-                 
-                if (counter < blockElements.length) {
-                    controlScroll(scroll, scopeAction, counter);
-                } else {
-                    return;
-                }
-             }
+            tools.childNodes.forEach((item, index) => {
+                controlScroll(scroll, distanceText, index);
+            });
         }
     });
 
-// Эта функция отображает блоки или удаляет их с задержкой 
-
-    function delayblock(time, index, actions) {
-        setTimeout(function() {
-            eval(`blockElements[${index}].classList.${actions}('active');`);
-        }, time);
-    }
-
-//Генератор следующего элемента в блоке tools
-
     const generNextEl =  showBlock();
     
+
     function* showBlock() {
 
-        for (let i = 0; i < blockElements.length; i++) {
-            blockElements[i].style.opacity = 1;
+        for (let i = 0; i < tools.childNodes.length; i++) {
+            tools.childNodes[i].classList.add('active');
             yield i;
         }
     }
 
-// С помощью counter контролирую чтобы блоки не багались
+    
     function controlScroll(scr, pos, count) {
 
         if (scr >= pos && count == counter) {
             generNextEl.next();
             counter++;
-            scopeAction += blockElemHeight * 0.9;
         }
     }
 }
@@ -171,6 +129,70 @@ function animInfo() {
 module.exports = animInfo;
 
 
+
+/***/ }),
+
+/***/ "./src/js/portfoliCheck.js":
+/*!*********************************!*\
+  !*** ./src/js/portfoliCheck.js ***!
+  \*********************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module */
+/*! CommonJS bailout: module.exports is used directly at 52:0-14 */
+/***/ ((module) => {
+
+function portfoliCheck() {
+    const items = document.querySelectorAll('.portfolio__items .portfolio__item');
+    const startValues = [];
+    let oneAction = 0;
+
+    items.forEach(item => {
+        startValues.push(item.innerHTML);
+    });
+
+    items.forEach((item, index) => {
+
+        item.addEventListener('click', () => {
+           
+            items.forEach(elem => {
+
+                if (elem.innerHTML != startValues[index]) {
+                    elem.innerHTML = startValues[index];
+                }
+            });
+
+           if (item.innerHTML == startValues[index] && oneAction == 0) {
+
+            let link = item.querySelector('a').getAttribute('href'),
+                name = item.querySelector('a').getAttribute('name');
+
+                item.innerHTML = '';
+            
+                item.innerHTML = `
+                    <div class="question">
+                        <p>Подтвердите переход на ${name}:</p>
+                        <button><a href="${link}">Уверен</a></button>
+                        <button>Сомневаюсь</button>
+                    </div>
+                `;
+
+                item.querySelectorAll('.question button').forEach(btn => {
+                    btn.addEventListener('click', () => {
+
+                        if (btn.textContent == 'Сомневаюсь') {
+                            item.innerHTML = startValues[index];
+                            oneAction++;
+                        } 
+                    });
+                });
+            }
+
+            oneAction = 0;
+        });
+    });
+}
+
+module.exports = portfoliCheck;
 
 /***/ })
 
@@ -219,7 +241,7 @@ window.addEventListener('load', () => {
     `;
 
     html.style.cssText = `
-        height: 2500px;
+        height: auto;
         width: auto;
         overflow: inherit;
     `;
@@ -228,9 +250,11 @@ window.addEventListener('load', () => {
 
     const animInfo = __webpack_require__(/*! ./animation-info */ "./src/js/animation-info.js");
     const animTools = __webpack_require__(/*! ./anim-tools */ "./src/js/anim-tools.js");
+    const portfolioCheck = __webpack_require__(/*! ./portfoliCheck */ "./src/js/portfoliCheck.js");
     
     animInfo();
     animTools();
+    portfolioCheck();
 });
 
 

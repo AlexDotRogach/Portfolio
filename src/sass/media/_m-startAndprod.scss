@@ -26,10 +26,6 @@
 
 @media (max-width: 640px) { 
     
-    .about__block-element {
-        transform: translateX(0);
-    }
-    
     .about__block-tools {
         display: flex;
         flex-flow: column nowrap;

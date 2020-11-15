@@ -41,7 +41,7 @@
         text-indent: 24px;
         font-size: 20px;
         transition: 0.7s;
-        transform: translateX(-1000%);
+        transform: scale(0,1);
     }
 
     &__block-tools {
@@ -54,11 +54,11 @@
     }
 
     &__block-element {
+        display: grid;
         grid-template: 45px minmax(115px, auto) / 100px 250px;
         row-gap: 20px;
-        transition: 1.2s;
-        transform: translateX(1000%);
-        display: none;
+        transition: 1s;
+        transform: scale(0,1);
     }
 
     &__block-title {
@@ -80,9 +80,5 @@
 }
 
 .active {
-    transform: translateX(0);
-}
-
-.activeBlock {
-    display: grid;
+    transform: scale(1,1);
 }

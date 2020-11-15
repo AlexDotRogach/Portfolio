@@ -5,8 +5,8 @@ function animTools() {
 
     let counter = 0, arr = [];
 
-    skillsBlock.forEach((item, index) => {
-        let blockElemTop = skillsBlock[index].getBoundingClientRect().top;
+    skillsBlock.forEach(item => {
+        let blockElemTop = item.getBoundingClientRect().top;
 
         arr.push(blockElemTop);
     });
@@ -14,6 +14,7 @@ function animTools() {
     arr = arr.map(item => item - +blockElemHeight);
 
     window.addEventListener('scroll', () => {
+
         const scroll = document.documentElement.scrollTop;
 
         arr.forEach((item, index) => {
@@ -23,6 +24,7 @@ function animTools() {
 
     const generNextEl =  showBlock();
     
+
     function* showBlock() {
 
         for (let i = 0; i < skillsBlock.length; i++) {
@@ -31,10 +33,10 @@ function animTools() {
         }
     }
 
+    
     function controlScroll(scr, pos, count) {
 
         if (scr >= pos && count == counter) {
-
             generNextEl.next();
             counter++;
         }

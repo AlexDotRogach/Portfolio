@@ -1,0 +1,109 @@
+.price {
+    font-family: 'Consolas';
+    color: black;
+    padding-bottom: 50px;
+
+    &__title {
+        text-align: center;
+        font-size: 30px;
+         margin-bottom: 40px;
+    }
+
+    &__container {
+        width: 80%;
+        margin: 0 auto;
+        display: grid;
+        grid-template: 1fr / 1fr 0.3fr 1fr;
+        place-items: center;
+    }
+    
+    &__firstBlock {
+        position: relative;
+        font-size: 18px;
+    }
+
+    &__secondBlock {
+        position: relative;
+        font-size: 18px;
+    }
+
+    &__firstBlock-item {
+        display: grid;
+        grid-template: 1fr / 1fr 1fr;
+        margin-bottom: 30px;
+        position: relative;
+        transition: 0.8s;
+    }
+
+    &__secondBlock-item {
+        display: grid;
+        grid-template: 1fr / 1fr 1fr;
+        margin-bottom: 30px;
+        position: relative;
+        transition: 0.8s;
+    }
+
+    &__item-text {
+        font-weight: 900;
+        position: relative;
+    }
+
+    &__item-text:before {
+        @include circleGrey;
+        background: rgba(141, 141, 139, 0.5);
+        left: -13px;
+        top: 0;
+    }
+
+    &__item-descr {
+        margin-top: 10px;
+        grid-column: 1/3;
+    }
+
+    &__item-decoration {
+        transition: 1s;
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: -5px;
+        background: black;
+    }
+
+    &__item-price {
+        justify-self: end;
+    }
+
+    &__division {
+        width: 2px;
+        height: 100%;
+        background: black;
+    }
+}
+
+@media (max-width: 860px) {
+    .price__firstBlock-item, .price__secondBlock{
+        display: flex;
+        flex-flow: column nowrap;
+        text-align: center;
+    }
+    .price__item-price {
+        margin-bottom: 10px;
+    }
+
+    .price__item-text:before {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+
+    .price__container {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .price__division {
+        display: none;
+    }
+}

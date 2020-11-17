@@ -1,0 +1,103 @@
+.container {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
+.division {
+    width: 40%;
+    height: 2px;   
+    background: orange; 
+    margin-top: 10px;
+}
+
+.social {
+    font-family: 'Consolas';
+    color: black;
+    padding: 50px 0;
+
+    &__wrapper {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__propose {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    &__form {
+        display: grid;
+        width: 600px;
+        height: auto;
+        grid-template: 45px 190px 30px 60px/ 1fr 1fr;
+        row-gap: 10px;
+        column-gap: 20px;
+    }
+
+    &__form input {
+        padding-left: 10px;
+    }
+
+    &__items {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__items a {
+        text-decoration: none;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.5s;
+    }
+
+    &__items a:hover {
+        background: rgba(251, 164, 2, .7);
+        border-radius: 10px;
+        transition: 0.5s;
+    }
+
+
+    &__but {
+        grid-column: 1 / 3;
+        position: relative;
+    }
+
+    &__but button {
+        background: #FFA501;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+        border: 0;
+        padding: 8px;
+        border-radius: 2px;
+        grid-column: 1 / 3;
+        width: 220px;
+        height: 45px;
+        position: absolute;
+        @include left;
+    }
+
+    &__input {
+        min-width: 280px;
+    }
+
+    &__form textarea {
+        resize: none;
+        min-width: 585px;
+        grid-column: 1 / 3;
+        padding-left: 10px;
+        padding-top: 5px;
+    }
+    
+    &__check {
+        grid-column: 1 / 3;
+        position: relative;
+    }
+
+    &__check input {
+        cursor: pointer;
+        position: absolute;
+        @include center;
+    }
+}

@@ -10,13 +10,13 @@ function portfoliCheck() {
     items.forEach((item, index) => {
 
         item.addEventListener('click', () => {
-           
-            items.forEach(elem => {
-
-                if (elem.innerHTML != startValues[index]) {
-                    elem.innerHTML = startValues[index];
+        //Убираю активные элементы после нажатия на элемент 
+           items.forEach((activeElem, elemIndex) => {
+    
+                if (activeElem.firstElementChild.classList.contains('question')) {
+                    activeElem.innerHTML = startValues[elemIndex];
                 }
-            });
+           });
 
            if (item.innerHTML == startValues[index] && oneAction == 0) {
 

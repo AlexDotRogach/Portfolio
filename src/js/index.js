@@ -1,3 +1,4 @@
+require('nodelist-foreach-polyfill');
 
 window.addEventListener('load', () => {
     
@@ -21,9 +22,11 @@ window.addEventListener('load', () => {
     const animInfo = require('./animation-info');
     const animTools = require('./anim-tools');
     const portfolioCheck = require('./portfoliCheck');
+    const price = require('./price');
     
     animInfo();
     animTools();
     portfolioCheck();
+    price();
 });
 

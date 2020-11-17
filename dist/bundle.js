@@ -1,5 +1,25 @@
-/******/ (() => { // webpackBootstrap
+/******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/nodelist-foreach-polyfill/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/nodelist-foreach-polyfill/index.js ***!
+  \*********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements:  */
+/***/ (function() {
+
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+
+
+/***/ }),
 
 /***/ "./src/js/anim-tools.js":
 /*!******************************!*\
@@ -7,7 +27,7 @@
   \******************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/***/ ((module) => {
+/***/ (function(module) {
 
 function animTools() {
 
@@ -64,7 +84,7 @@ module.exports = animTools;
   \**********************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/***/ ((module) => {
+/***/ (function(module) {
 
 function animInfo() {
     
@@ -138,8 +158,7 @@ module.exports = animInfo;
   \*********************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 52:0-14 */
-/***/ ((module) => {
+/***/ (function(module) {
 
 function portfoliCheck() {
     const items = document.querySelectorAll('.portfolio__items .portfolio__item');
@@ -153,13 +172,13 @@ function portfoliCheck() {
     items.forEach((item, index) => {
 
         item.addEventListener('click', () => {
-           
-            items.forEach(elem => {
-
-                if (elem.innerHTML != startValues[index]) {
-                    elem.innerHTML = startValues[index];
+        //Убираю активные элементы после нажатия на элемент 
+           items.forEach((activeElem, elemIndex) => {
+    
+                if (activeElem.firstElementChild.classList.contains('question')) {
+                    activeElem.innerHTML = startValues[elemIndex];
                 }
-            });
+           });
 
            if (item.innerHTML == startValues[index] && oneAction == 0) {
 
@@ -194,6 +213,75 @@ function portfoliCheck() {
 
 module.exports = portfoliCheck;
 
+/***/ }),
+
+/***/ "./src/js/price.js":
+/*!*************************!*\
+  !*** ./src/js/price.js ***!
+  \*************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module */
+/***/ (function(module) {
+
+function price() {
+
+    animPrice('firstBlock');
+    animPrice('secondBlock');
+
+    function animPrice(selector) {
+        const elementsPrice = document.querySelectorAll(`.price__${selector}-item`);
+        const elementChanging = document.querySelectorAll(`.price__${selector}-item .price__item-decoration`);
+        const arrActuation = [];
+        let counter = 0;
+
+        elementsPrice.forEach(elem => {
+
+            let newValue = Math.floor(elem.getBoundingClientRect().top - document.documentElement.clientHeight * 0.7);
+                arrActuation.push(newValue);
+        });
+
+        document.addEventListener('scroll', () => {
+            
+            const scroll = document.documentElement.scrollTop;
+
+
+                checkScroll(scroll, arrActuation[counter], elementChanging[counter], counter);
+        });
+    
+
+        function checkScroll(scroll, actuation, elem, number) {
+
+            if (scroll >= actuation && number == counter) {
+                
+                elem.style.display = 'none';
+                elem.parentNode.style.border = '1px solid black';
+                elem.parentNode.style.padding= '15px';
+                elem.parentNode.style.borderRadius= '10px';
+                counter++;
+            } 
+            
+            if (counter == elementChanging.length) {
+                counter = 0;
+            }
+
+            if (scroll <= actuation){
+                elem.style.display = 'block';
+                elem.parentNode.style.border = 'none';
+                elem.parentNode.style.padding= '0';
+                elem.parentNode.style.borderRadius= '0';
+                counter--;
+
+                if (counter < 0) {
+                    counter = 0;
+                }
+            }
+        }
+    }
+}
+
+
+module.exports = price;
+
 /***/ })
 
 /******/ 	});
@@ -222,12 +310,13 @@ module.exports = portfoliCheck;
 /******/ 	}
 /******/ 	
 /************************************************************************/
-(() => {
+!function() {
 /*!*************************!*\
   !*** ./src/js/index.js ***!
   \*************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_require__ */
+__webpack_require__(/*! nodelist-foreach-polyfill */ "./node_modules/nodelist-foreach-polyfill/index.js");
 
 window.addEventListener('load', () => {
     
@@ -251,15 +340,16 @@ window.addEventListener('load', () => {
     const animInfo = __webpack_require__(/*! ./animation-info */ "./src/js/animation-info.js");
     const animTools = __webpack_require__(/*! ./anim-tools */ "./src/js/anim-tools.js");
     const portfolioCheck = __webpack_require__(/*! ./portfoliCheck */ "./src/js/portfoliCheck.js");
+    const price = __webpack_require__(/*! ./price */ "./src/js/price.js");
     
     animInfo();
     animTools();
     portfolioCheck();
+    price();
 });
 
 
-})();
-
+}();
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map

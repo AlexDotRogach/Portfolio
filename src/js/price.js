@@ -9,10 +9,11 @@ function price() {
         const arrActuation = [];
         let counter = 0;
 
-        elementsPrice.forEach(elem => {
+        elementsPrice.forEach(item => {
 
-            let newValue = Math.floor(elem.getBoundingClientRect().top - document.documentElement.clientHeight * 0.7);
-                arrActuation.push(newValue);
+            let newValue = Math.floor(item.getBoundingClientRect().top - document.documentElement.clientHeight * 0.7);
+
+            arrActuation.push(newValue);
         });
 
         document.addEventListener('scroll', () => {
@@ -20,7 +21,7 @@ function price() {
             const scroll = document.documentElement.scrollTop;
 
 
-                checkScroll(scroll, arrActuation[counter], elementChanging[counter], counter);
+            checkScroll(scroll, arrActuation[counter], elementChanging[counter], counter);
         });
     
 
@@ -55,4 +56,4 @@ function price() {
 }
 
 
-module.exports = price;
+export default price;

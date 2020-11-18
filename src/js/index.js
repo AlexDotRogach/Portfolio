@@ -1,5 +1,3 @@
-require('nodelist-foreach-polyfill');
-
 window.addEventListener('load', () => {
     
     const body = document.querySelector('body'), html = document.querySelector('html');
@@ -8,22 +6,24 @@ window.addEventListener('load', () => {
         background: none;
         height: auto;
         width: auto;
-        overflow: scroll;
     `;
 
     html.style.cssText = `
         height: auto;
         width: auto;
-        overflow: inherit;
+        overflow-y: scroll;
+        overflow-x: auto;
     `;
 
     document.querySelector('.loader').style.display = 'none';
-
-    const animInfo = require('./animation-info');
-    const animTools = require('./anim-tools');
-    const portfolioCheck = require('./portfoliCheck');
-    const price = require('./price');
     
+    const menu = require('./menu').default;
+    const animInfo = require('./animation-info').default;
+    const animTools = require('./anim-tools').default;
+    const portfolioCheck = require('./portfoliCheck').default;
+    const price = require('./price').default;
+
+    menu();
     animInfo();
     animTools();
     portfolioCheck();

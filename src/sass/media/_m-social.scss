@@ -1,0 +1,33 @@
+@media (max-width: 750px) {
+
+    .social__form {
+        width: 500px;
+    }
+}
+
+@media (max-width: 550px) {
+
+    .social__form {
+        width: 400px;
+        grid-template: 50px 50px 250px 50px 50px / 1fr;
+    }
+
+    .social__form textarea{
+        grid-column: inherit;
+    }
+
+    .social__but {
+        grid-column: inherit;
+    }
+
+    .social__check {
+        grid-column: inherit;
+    }
+}
+
+@media (max-width: 400px) { 
+
+    .social__form {
+        width: 300px;
+    }
+}

@@ -1,5 +1,5 @@
 function animInfo() {
-    
+
     const aboutMeElements = document.querySelector('.about__block-info').childNodes;
     const text = aboutMeElements[0];
     const tools = aboutMeElements[1];
@@ -57,6 +57,5 @@ function animInfo() {
     }
 }
 
-
-module.exports = animInfo;
+export default animInfo;
 

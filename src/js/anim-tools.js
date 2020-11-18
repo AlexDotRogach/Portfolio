@@ -43,4 +43,4 @@ function animTools() {
     }
 }
 
-module.exports = animTools;
+export default animTools;

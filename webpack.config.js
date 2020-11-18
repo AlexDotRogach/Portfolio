@@ -3,7 +3,7 @@
 let path = require('path');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: './src/js/index.js',
   output: {
     filename: 'bundle.js',
@@ -12,28 +12,23 @@ module.exports = {
   watch: true,
 
   devtool: "source-map",
-  //модули для использования
-  // module: {
-  //   //правила
-  //   rules: [
-  //     {
-  //       test: /\.m?js$/,
-  //       //исключить 
-  //       exclude: /(node_modules|bower_components)/,
-  //       //использовать
-  //       use: {
-  //         //связывает webpack c loader
-  //         loader: 'babel-loader',
-  //         options: {
-  //           // Присеты
-  //           presets: [['@babel/preset-env', {
-  //               debug: true,
-  //               corejs: 3,
-  //               useBuiltIns: "usage"
-  //           }]]
-  //         }
-  //       }
-  //     }
-  //   ]
-  // }
+
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [['@babel/preset-env', {
+                debug: true,
+                corejs: 3,
+                useBuiltIns: "usage"
+            }]],
+          }
+        }
+      }
+    ]
+  }
 };

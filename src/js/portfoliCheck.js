@@ -49,4 +49,4 @@ function portfoliCheck() {
     });
 }
 
-module.exports = portfoliCheck;
+export default portfoliCheck;

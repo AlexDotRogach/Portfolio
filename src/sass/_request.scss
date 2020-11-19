@@ -1,0 +1,13 @@
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 85px;
+        height: 85px;
+        object-fit: cover;
+        margin-top: 10px;
+    }
+}

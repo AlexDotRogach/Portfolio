@@ -22,11 +22,13 @@ window.addEventListener('load', () => {
     const animTools = require('./anim-tools').default;
     const portfolioCheck = require('./portfoliCheck').default;
     const price = require('./price').default;
+    const request = require('./request').default;
 
     menu();
     animInfo();
     animTools();
     portfolioCheck();
     price();
+    request();
 });
 

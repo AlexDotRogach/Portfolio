@@ -32,6 +32,8 @@
 
     &__element a:hover {
         text-decoration: none;
+        color: orange;
+        transition: 0.5s;
     }
 }
 

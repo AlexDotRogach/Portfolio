@@ -9,7 +9,7 @@
 
     .social__form {
         width: 400px;
-        grid-template: 50px 50px 250px 50px 50px / 1fr;
+        grid-template: 50px 50px 250px 80px 50px / 1fr;
     }
 
     .social__form textarea{
@@ -22,6 +22,12 @@
 
     .social__check {
         grid-column: inherit;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .social__check input {
+        margin-top: 5px;
     }
 }
 

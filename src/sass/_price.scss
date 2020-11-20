@@ -82,11 +82,12 @@
 }
 
 @media (max-width: 860px) {
-    .price__firstBlock-item, .price__secondBlock{
+    .price__firstBlock-item, .price__secondBlock-item{
         display: flex;
         flex-flow: column nowrap;
         text-align: center;
     }
+    
     .price__item-price {
         margin-bottom: 10px;
     }

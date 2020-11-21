@@ -68,13 +68,17 @@ function menu() {
                 closeMenu();
             });
         });
- 
-        intervalShowElement();
-    
     });
 
     btnClose.addEventListener('click', () => {
         closeMenu();
+    });
+
+    document.addEventListener('click', (e) => {
+
+        if (e.target.classList.contains('wrapper__active-menu')) {
+            closeMenu();
+        }
     });
 
     let generElem = nextElem();
@@ -83,7 +87,8 @@ function menu() {
 
         for (let i = 0; i < elements.length; i++) {
             elements[i].style.height = '10vh';
-            elements[i].style.marginTop = '15px';
+            elements[i].style.marginTop = '10px';
+            elements[i].style.marginLeft = '100px';
             counter++;
             
             if (i == elements.length - 1) {

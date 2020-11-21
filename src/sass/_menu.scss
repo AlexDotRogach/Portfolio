@@ -27,7 +27,7 @@
     &__element a {
         font-family: 'Consolas';
         font-size: 22px;
-        color: rgba(0,0,0,0.8);
+        color: black;
     }
 
     &__element a:hover {
@@ -35,6 +35,10 @@
         color: orange;
         transition: 0.5s;
     }
+}
+
+.bbb {
+    border-bottom: 2px solid black;
 }
 
 .wrapper__active-menu {
@@ -66,6 +70,7 @@
     border-radius: 40px;
     margin: 20px auto 0 auto;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .gg-close-o::after,

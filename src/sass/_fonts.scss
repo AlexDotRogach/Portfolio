@@ -3,7 +3,6 @@
     src: url('../fonts/Samsara-Regular.eot');
     src: local('Samsara Regular'), local('Samsara-Regular'),
         url('../fonts/Samsara-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Samsara-Regular.woff2') format('woff2'),
         url('../fonts/Samsara-Regular.woff') format('woff');
     font-weight: 300;
     font-style: normal;
@@ -13,7 +12,7 @@
 @font-face {
 	font-family: 'marker';
 	src: url('../fonts/19849.eot');
-	src: local('☺'), url('../fonts/19849.woff') format('woff'), url('../fonts/19849.ttf') format('truetype'), url('../fonts/19849.svg') format('svg');
+	src: local('☺'), url('../fonts/19849.woff') format('woff'), url('../fonts/19849.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -22,7 +21,7 @@
 @font-face {
 	font-family: 'Consolas';
 	src: url('../fonts/Consolas.eot');
-	src: local('☺'), url('../fonts/Consolas.woff') format('woff'), url('../fonts/Consolas.ttf') format('truetype'), url('../fonts/Consolas.svg') format('svg');
+	src: local('☺'), url('../fonts/Consolas.woff') format('woff'), url('../fonts/Consolas.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
